@@ -1,0 +1,66 @@
+db.Posts.insert({
+	title: 'Post one',
+	body: 'Body of post one',
+	category: 'News',
+	likes: 4,
+	tags: ['News', 'Events'],
+	user: {
+		name: 'John Man',
+		status: 'author'
+	},
+	date: Date()
+})
+
+db.Posts.find({category: 'News'})
+db.Posts.find({category: 'News'}).sort({title: 1})
+db.Posts.find({category: 'News'}).count()
+db.Posts.find().sort({title: -1}).limit(2)
+db.Posts.find().forEach((post)=>{
+	print('Blog post: '+post.title)
+})
+db.Posts.findOne({category: 'News'})
+db.Posts.update(
+	{title: 'Post one'},
+	{$set: {'date': Date()}},
+	{upsert: true}
+)
+db.Posts.update(
+	{title: 'Post one'},
+	{$inc: {likes: 2}}
+)
+db.Posts.update(
+	{title: 'Post one'},
+	{$rename: {likes: 'views'}}
+)
+db.Posts.remove({title: 'Post one'})
+db.Posts.update(
+	{title: 'Post one'},
+	{$set: {
+		comments: [
+			{user: 'Random Name', body: 'Comment One', date: Date()},
+			{user: 'Another One', body: 'Comment Two', date: Date()}
+		]
+	}}
+)
+
+db.Posts.find({
+	comments: {
+		$elemMatch: {
+			user: 'Random Name'
+		}
+	}
+})
+
+db.Posts.createIndex({title: 'text'})
+
+db.Posts.find({
+	$text: {
+		$search: "\"Post O\""
+	}
+})
+
+db.Posts.update({title: 'Post two'}, {$set: {views: 10}})
+
+db.Posts.find({views: {$gt: 6}})
+db.Posts.find({views: {$lt: 6}})
+db.Posts.find({views: {$lte: 6}})
