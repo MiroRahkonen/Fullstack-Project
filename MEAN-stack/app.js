@@ -9,7 +9,7 @@ const users = require('./routes/users');
 
 // Database connection
 mongoose.connect(config.databaseURL);
-
+console.log('Connected to database',config.databaseURL)
 
 // App initialization
 const app = express();
