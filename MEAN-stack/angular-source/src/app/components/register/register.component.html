@@ -1,8 +1,6 @@
 <h2 class="page-header">Register</h2>
 <form (submit)="onSubmit()">
-    <div *ngIf="showDangerAlert" class="alert alert-danger">
-        {{alertMessage}}
-    </div>
+    <alertbox [alertMessage]="alertMessage" *ngIf="showError"></alertbox>
 
     <div class="form-group">
         <label>Name</label>

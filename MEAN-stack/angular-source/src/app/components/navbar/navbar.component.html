@@ -13,13 +13,23 @@
         </div>
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+                <li *ngIf="authService.checkIfLoggedIn()" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+                    <a [routerLink]="['/dashboard']">Dashboard</a>
+                </li>
+                <li *ngIf="authService.checkIfLoggedIn()" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+                    <a [routerLink]="['/profile']">Profile</a>
+                </li>
+                <li *ngIf="!authService.checkIfLoggedIn()" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
                     <a [routerLink]="['/login']">Login</a>
                 </li>
-                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+                <li *ngIf="!authService.checkIfLoggedIn()" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
                     <a [routerLink]="['/register']">Register</a>
+                </li>
+                <li *ngIf="authService.checkIfLoggedIn()" class="nav-item">
+                    <a (click)="onLogOutClick()" href="#">Logout</a>
                 </li>
             </ul>
         </div>
     </div>
-  </nav>
+</nav>
+<alertbox [alertMessage]="alertMessage" *ngIf="showError"></alertbox>

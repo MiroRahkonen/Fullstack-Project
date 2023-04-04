@@ -35,7 +35,6 @@ router.post('/register',async (req,res,next)=>{
 
 // Authentication
 router.post('/authenticate',async (req,res,next)=>{
-
     let foundUser = await Users.findOne({username: req.body.username})
     if(!foundUser){
         return res.json({success: false,message: 'Authentication failed, user not found'});

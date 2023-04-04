@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 interface response {
   success?: boolean,
-  message?: string
+  message?: any
 }
 
 @Component({
@@ -22,12 +22,12 @@ export class RegisterComponent {
     private authService: AuthService,
     private router: Router){}
 
-  showDangerAlert: boolean = false;
-  alertMessage: String = '';
-  name: String | undefined;
-  username: String | undefined;
-  email: String | undefined;
-  password: String | undefined;
+  showError: boolean = false
+  alertMessage: any;
+  name: any;
+  username: any;
+  email: any;
+  password: any;
   onSubmit(){
     const userdata = {
       name: this.name,
@@ -38,18 +38,17 @@ export class RegisterComponent {
     // Validating the form data
     if(!this.validateService.validateRegister(userdata)){
       //All fields aren't filled
-      this.showDangerAlert = true;
+      this.showError = true;
+      setTimeout(()=> {this.showError = false},5000);
       this.alertMessage = 'Please fill in all fields'
       return false;
     }
     if(!this.validateService.validateEmail(userdata.email)){
       //Email isn't valid
-      this.showDangerAlert = true;
+      this.showError = true;
+      setTimeout(()=> {this.showError = false},5000);
       this.alertMessage = 'E-mail is invalid';
       return false;
-    }
-    else{
-      this.showDangerAlert = false;
     }
 
     //Registering the account
@@ -58,9 +57,10 @@ export class RegisterComponent {
         this.router.navigate(['/login']);
       }
       else{
-        console.log('False')
-        this.showDangerAlert = true;
-        this.alertMessage = 'Register failed, username already in use'
+        this.showError = true;
+        setTimeout(()=> {this.showError = false},5000);
+        this.alertMessage = 'Register failed, username already in use';
+
       }
     })
 
