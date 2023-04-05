@@ -59,4 +59,37 @@ export class AuthService {
     return this.http.get('http://localhost:3000/users/profile',{headers: headers})
       .pipe(map(res=> res))
   }
+
+  getNotes(): Observable<any>{
+    this.authToken = localStorage.getItem('id_token');
+    let headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization',this.authToken);
+
+    return this.http.get('http://localhost:3000/users/notes',{headers: headers})
+      .pipe(map(res=> res))
+  }
+
+  postNote(note: any){
+    this.authToken = localStorage.getItem('id_token');
+    let headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization',this.authToken);
+
+    return this.http.post('http://localhost:3000/users/note',{'note': note},{headers: headers})
+      .pipe(map(res=> res))
+  }
+
+  removeNote(noteID: any){
+    this.authToken = localStorage.getItem('id_token');
+
+
+    return this.http.delete('http://localhost:3000/users/note',{
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': this.authToken,
+      },
+      body: {'noteID': noteID}
+    }).pipe(map(res=> res))
+  }
 }

@@ -1,2 +1,21 @@
-<h2 class="page-header">Dashboard</h2>
+<h2 *ngIf="user" class="page-header">{{user.name}}'s Dashboard</h2>
 <p>Welcome to the dashboard</p>
+<div *ngIf="user">
+    <form (keyup.enter)="postNote()">
+        <!--alertbox [alertMessage]="alertMessage" *ngIf="showError"></alertbox-->
+        <div class="form-group">
+            <label>Note: </label>
+            <input type="text" class="form-control" [(ngModel)]="note" name="note" placeholder="Add new note...">
+        </div>
+    </form>
+</div>
+
+<div *ngIf="user">
+    <h4>Notes</h4>
+    <ul class="list-group" *ngFor="let note of notelist; let i = index">
+        <li class="list-group-item">
+            {{note.time}}: {{note.message}}
+            <button (click)="removeNote(i)" class="btn red">X</button>
+        </li>
+    </ul>
+</div>

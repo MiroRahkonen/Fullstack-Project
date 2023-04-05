@@ -26,7 +26,8 @@ router.post('/register',async (req,res,next)=>{
                 name: req.body.name,
                 email: req.body.email,
                 username: req.body.username,
-                password: encryptedPassword
+                password: encryptedPassword,
+                notes: []
             }
         );
     })
@@ -63,9 +64,45 @@ router.post('/authenticate',async (req,res,next)=>{
 
 router.get('/profile',passport.authenticate('jwt',{session:false}),(req,res,next)=>{
     res.json({user: req.user})
-
 })
 
+router.get('/notes',passport.authenticate('jwt',{session:false}),(req,res,next)=>{
+    res.json({notes: req.user.notes});
+})
+
+router.post('/note',passport.authenticate('jwt',{session: false}),async (req,res,next)=>{
+    let user = await Users.findOne({username: req.user.username});
+    if(!user){return res.status(400).json({message: 'Error finding user'})};
+
+    let date = new Date();
+
+    //Minutes needs more checking to keep the leading zero
+    let minutes = date.getMinutes();
+    if(minutes < 10){
+        minutes = '0'+minutes.toString()
+    };
+
+    let currentTime = date.getDate()+'.'+(date.getMonth()+1)+'.'+date.getFullYear()+ 
+        ' '+date.getHours()+':'+minutes;
+
+    const newNote = {
+        time: currentTime,
+        message: req.body.note
+    }
+    user.notes.push(newNote);
+    //user.notes = [];
+    user.save();
+    res.json({message: 'Note added successfully'});
+})
+
+router.delete('/note',passport.authenticate('jwt',{session:false}),async (req,res,next)=>{
+    let user = await Users.findOne({username: req.user.username});
+    if(!user){return res.status(400).json({message: 'Error finding user'})};
+    
+    user.notes = user.notes.filter((note) => note.id !== req.body.noteID);
+    user.save();
+    res.json({message: 'Note deleted'});
+})
 
 
 module.exports = router;

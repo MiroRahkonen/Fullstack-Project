@@ -16,7 +16,11 @@ let UserSchema = new Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    notes: [{
+        time: {type: String},
+        message: {type: String}
+    }]
 })
 
 module.exports = mongoose.model('users',UserSchema);
