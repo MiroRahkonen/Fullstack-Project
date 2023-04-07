@@ -5,6 +5,6 @@ To run the project program:
 
 2.1 To only download the project application, extract the 'Project work' folder to your desired location
   
-3. Open the 'Project work' folder inside Visual Studio Code, or navigate to it inside of a terminal
+3. Open the 'Project work' folder inside of a terminal
   
 4. 
