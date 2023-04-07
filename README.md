@@ -1,3 +1,4 @@
+To run the project program: 
 1. Download all of the files from the GitHub page as a .zip file
 
 1.1 To get all of the course files, extract all of the files to your desired location with winRAR or similar program
