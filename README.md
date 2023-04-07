@@ -16,7 +16,14 @@ I used node version 18.12.1 while producing the program, so if the program isn't
 ```rb
 # npm run start
 ```
-
 6. For the angular app, navigate to /angular-source/ folder inside of another terminal
 
-7. 
+7. To install the angular app dependencies, run command
+```rb
+# npm install
+```
+8. To run the angular app, run command
+```rb
+# ng serve
+```
+9. While both the back-end server and angular app are running, open the website http://localhost:4200 to access the app
