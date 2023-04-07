@@ -6,6 +6,8 @@ If you don't already have the angular-CLI installed, install it with command
 ```
 The Angular CLI will be necessary for running the angular application
 
+
+
 1. Download all of the files from the GitHub page as a .zip file
 
 2. To preserve all of the course files, extract all of the files to your desired location with winRAR or similar program
