@@ -1,4 +1,4 @@
-I used node version 18.12.1 while producing the program, so if the program isn't working with your version of node, a solution might be to switch to this version instead
+I used node version 18.12.1 while producing the project, so if the project isn't working with your version of node, a solution might be to switch to this version instead
 
 1. Download all of the files from the GitHub page as a .zip file
 
@@ -16,9 +16,9 @@ I used node version 18.12.1 while producing the program, so if the program isn't
 ```rb
 # npm run start
 ```
-6. For the angular app, navigate to /angular-source/ folder inside of another terminal
+6. Open another terminal for the angular app and navigate to the /angular-source/ folder in the other terminal
 
-7. To install the angular app dependencies, run command
+7. Install the angular app dependencies with command
 ```rb
 # npm install
 ```
@@ -26,4 +26,4 @@ I used node version 18.12.1 while producing the program, so if the program isn't
 ```rb
 # ng serve
 ```
-9. While both the back-end server and angular app are running, open the website http://localhost:4200 to access the app
+9. While both the back-end server and angular app are running, open website http://localhost:4200 to access the app
