@@ -8,3 +8,6 @@ To run the project program:
 3. Open the 'Project work' folder inside of a terminal
   
 4. 
+```rb
+# path/to/your/file.rb
+```
